@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: testserver-deploy
+  labels:
+    app: testserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: testserver
+  template:
+    metadata:
+      labels:
+        app: testserver
+    spec:
+      containers:
+      - name: testserver-container
+        image: testserver
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: testserver-svc
+  labels:
+    app: testserver
+spec:
+  selector:
+    app: testserver
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000

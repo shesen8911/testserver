@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: testserver-pod
+  labels:
+    app: testserver
+spec:
+  containers:
+  - name: testserver-container
+    image: testserver:latest
